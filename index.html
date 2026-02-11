@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somnio Superyacht Academy Training</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .page { display: none; max-width: 800px; margin: auto; }
+        #page1 { display: block; }
+        h1 { text-align: center; }
+        button { display: block; margin: 20px auto; padding: 10px 20px; }
+        form { max-width: 600px; margin: auto; }
+        label { display: block; margin-top: 10px; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="page1" class="page">
+        <h1>Welcome to Somnio Superyacht Academy</h1>
+        <p>Somnio is the world's first yacht liner, a luxurious residential superyacht designed for the elite. It offers unparalleled opulence, with residences owned by the world's wealthiest individuals. As part of our team, you'll contribute to maintaining the highest standards of service and operations on this extraordinary vessel.</p>
+        <p>Our academy ensures all staff, including our chief engineers, are trained in our core ethics and protocols to uphold safety, discretion, and excellence.</p>
+        <button onclick="nextPage(2)">Next</button>
+    </div>
+
+    <div id="page2" class="page">
+        <h1>Your Role as Chief Engineer</h1>
+        <p>As the Chief Engineer at Somnio Superyacht, you are responsible for overseeing all engineering operations, ensuring the vessel's mechanical, electrical, and structural systems function flawlessly. This includes maintenance, repairs, compliance with maritime regulations, and leading the engineering team.</p>
+        <p>Our ethics emphasize integrity, safety first, environmental responsibility, and utmost confidentiality for our residents. Protocols include strict adherence to safety drills, eco-friendly practices, and professional conduct at all times.</p>
+        <p>We are about to begin your online training module. Please proceed to provide your details for registration.</p>
+        <button onclick="nextPage(3)">Begin Training</button>
+    </div>
+
+    <div id="page3" class="page">
+        <h1>Registration Form</h1>
+        <form id="registrationForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" rows="4" required></textarea>
+
+            <label for="position">Position:</label>
+            <input type="text" id="position" value="Chief Engineer" readonly>
+
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+    </div>
+
+    <div id="page4" class="page">
+        <h1>Registration Complete</h1>
+        <p>Thank you for completing your registration. Your details have been submitted, and you will be contacted soon regarding the next steps in your training.</p>
+    </div>
+
+    <script>
+        function nextPage(pageNumber) {
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`page${i}`).style.display = 'none';
+            }
+            document.getElementById(`page${pageNumber}`).style.display = 'block';
+        }
+
+        function submitForm() {
+            const form = document.getElementById('registrationForm');
+            if (form.checkValidity()) {
+                // Here, you can add code to handle form submission, e.g., send to a server.
+                // For now, it just logs to console and proceeds to confirmation.
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    position: document.getElementById('position').value
+                };
+                console.log('Form submitted:', formData);
+                // To make it functional, you could use a service like Formspree.io:
+                // Change the form to <form action="https://formspree.io/your-email" method="POST"> and remove the button onclick.
+                nextPage(4);
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        }
+    </script>
+
+</body>
+</html>
